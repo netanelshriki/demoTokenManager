@@ -1,26 +1,26 @@
 package com.net.demoTokenManager.beans;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
+@Table(name = "roles")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Table(name = "users")
-public class User {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private Set<Role> roles;
-}
+    private Integer id;
 
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private RoleType name;
+
+    public Role(RoleType name) {
+        this.name = name;
+    }
+}
